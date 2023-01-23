@@ -1,9 +1,4 @@
-/*************************************************************************
-                           Graphe  -  Encapsule la structure d'un graphe orienté
-                             -------------------
-    début                : 01/19
-    copyright            : (C) 2019 par Gadacha A, Tondereau A
-*************************************************************************/
+
 
 //---------- Réalisation de la classe <Graphe> (fichier Graphe.cpp) ------------
 

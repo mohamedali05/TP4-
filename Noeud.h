@@ -37,10 +37,15 @@ public:
 
     unsigned int GetNumNoeud() const;
 
+    
+    string GetLabel() const;
+
     const map < string, int > & GetStructure() const;
     // Mode d'emploi :
     // Renvoie les liens encapsulés dans le Noeud
     // Contrat : 
+
+
     
     int GetAccesDepuisSource( string source ) const;
     // Mode d'emploi : 
@@ -68,6 +73,7 @@ public:
     // Mode d'emploi : 
     // Construit un Noeud par défaut avec le nom DEFAULT
     
+    Noeud (string label );
 
     virtual ~Noeud ( );
     // Mode d'emploi :
@@ -82,6 +88,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
+string label ; 
 map < string, int> liens;
 unsigned int nombreLiens;
 unsigned int numNoeud;

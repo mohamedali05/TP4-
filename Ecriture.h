@@ -1,43 +1,44 @@
 
 //---------- Interface de la classe <Graphe> (fichier Noeud.h) ----------------
-#if ! defined ( GRAPHE_H )
-#define GRAPHE_H
+#if ! defined ( ECRITURE_H )
+#define ECRITURE_H
 
 //--------------------------------------------------- Interfaces utilisées
 #include <string>
 #include <map>
+#include <vector>
 #include "Noeud.h"
+#include "Graphe.h"
 using namespace std;
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
 
 //------------------------------------------------------------------------
-// Rôle de la classe <Graphe>
+// Rôle de la classe <Ecriture>
 //
 //
 //------------------------------------------------------------------------
 
-class Graphe
+class Ecriture
 {
 //----------------------------------------------------------------- PUBLIC
 
 public:
 //----------------------------------------------------- Méthodes publiques
    
-    void AjouterLien( string Referer, string cible ) ; 
+    void Ecrire_terminal(const vector < Noeud > & selection)  ; 
 
-    const vector <Noeud> TopNoeudConnectes(int n) const ; 
+    void Ecrire_Graphe(Graphe graphe) ; 
 
-    const map < string, Noeud > & GetStructure() ;  
+    
 
-
-    Graphe ( );
+    Ecriture ( );
     // Mode d'emploi : 
     // Construit un Graphe par défaut 
     
 
-    virtual ~Graphe ( );
+    virtual ~Ecriture ( );
     // Mode d'emploi :
     // Detruit l'objet appelant
     // Contrat :
@@ -50,8 +51,7 @@ protected:
 
 //----------------------------------------------------- Attributs protégés
 
-map < string, Noeud> tableLiens;
-unsigned int nombreNoeuds;
+
 
 };
 

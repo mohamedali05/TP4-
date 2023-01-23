@@ -47,8 +47,9 @@ int main( int argc, char ** argv)
     for (int i = 1 ; i < argc ; i++){
         ArgCourant = argv[i]  ; 
         if (ArgCourant == "-g"){
-                if (i == argc - 1){
+                if (i >= argc - 2 ){
                     ArgValides = false ; 
+                    
                     cerr<<"Nombre de paramètres invalides"<<endl ; 
                 }else{
                     FaireGraphe = true ; 
@@ -68,6 +69,10 @@ int main( int argc, char ** argv)
             }else{
                     FiltreHeure = true ; 
                     heure  = stoi(argv[i+1]) ; 
+                    if(heure <0 || heure >23 ){
+                        cerr<<"écriture de l'heure invalide"<<endl ; 
+                        ArgValides = false ; 
+                    }
                     i++ ;  
                 }
         }

@@ -1,46 +1,48 @@
 /*************************************************************************
-                           Xxx  -  description
+                           Lecture  -  description
                              -------------------
     début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Interface de la classe <Xxx> (fichier Xxx.h) ----------------
-#if ! defined ( LECTURE_H )
-#define LECTURE_H
-
+//---------- Interface de la classe <Lecture> (fichier Lecture.h) ----------------
+#if ! defined ( Lecture_H )
+#define Lecture_H
 
 //--------------------------------------------------- Interfaces utilisées
 
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
+
 typedef struct{
-    unsigned int seconde ; 
-    unsigned int minute ; 
-    unsigned int heure ;
-    unsigned int jour ; 
+    unsigned int sec;
+    unsigned int min;
+    unsigned int heure;
+    unsigned int jour;
     unsigned int mois;
     unsigned int annee;
-    bool decalagePositif;
-    unsigned int heureCreneau;
-    unsigned int minuteCreneau;
-}Date ; 
 
+    bool deca;
+    unsigned int hCreneau;
+    unsigned int mCreneau;
+} Date;
 
 typedef struct{
-    string adresseIP;
-    string nomUtilisateurAuth;
-    string nomUtilisateur;
-    string typeAction;
-    string URL ;
-    string typeDoc;
-    string referer;
-    string clientNav;
+    string IP;
+    string logname; //pas d'espace
+    string username; //pas d'espace
     Date date;
-    int status, quantiteTr;
-} Activite_t;
+    string action;
+    string cible;
+    string version;
+    unsigned int status;
+    unsigned int data;
+    string referer;
+    string IDnav;
+}log;
+
 
 
 
@@ -51,7 +53,7 @@ typedef struct{
 //
 //------------------------------------------------------------------------
 
-class Lecture 
+class Lecture
 {
 //----------------------------------------------------------------- PUBLIC
 
@@ -65,12 +67,25 @@ public:
 
 
 //------------------------------------------------- Surcharge d'opérateurs
-    
+    Lecture & operator = ( const Lecture & unLecture );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
+
 
 //-------------------------------------------- Constructeurs - destructeur
+    Lecture ( const Lecture & unLecture );
+    // Mode d'emploi (constructeur de copie) :
+    //
+    // Contrat :
+    //
 
-    Lecture() ; 
-    
+    Lecture ( );
+    // Mode d'emploi :
+    //
+    // Contrat :
+    //
 
     virtual ~Lecture ( );
     // Mode d'emploi :
@@ -78,18 +93,19 @@ public:
     // Contrat :
     //
 
+    log read (string cmd);
 //------------------------------------------------------------------ PRIVE
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-
+string partage(string & ligne);
 //----------------------------------------------------- Attributs protégés
-
+log Log;
+const string nomMois[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 };
 
 
+//-------------------------------- Autres définitions dépendantes de <Lecture>
 
-//-------------------------------- Autres définitions dépendantes de <Xxx>
-
-#endif // LECTURE_H
+#endif // Lecture_H
 

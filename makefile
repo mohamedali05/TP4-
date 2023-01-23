@@ -1,6 +1,6 @@
 CPPFLAGS= -ansi -pedantic -Wall -std=c++11 -g
 
-Analog : Analog.o Lecture.o Noeud.o Graphe.o
+Analog : Analog.o Lecture.o Noeud.o Graphe.o Ecriture.o
 	@echo "edl de Analog"
 	g++ -o $@ $^
 

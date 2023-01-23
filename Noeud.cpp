@@ -50,6 +50,11 @@ unsigned int Noeud::GetNumNoeud() const
     return numNoeud;
 }
 
+string Noeud::GetLabel() const
+{
+    return label ;
+}
+
 int Noeud::GetAccesDepuisSource( string source ) const
 {
     if( liens.count( source ) != 0 )
@@ -94,11 +99,28 @@ Noeud::Noeud ()
 #ifdef MAP
     cout << "Appel au constructeur par defaut de <Noeud>" << endl;
 #endif
+
+    label = "Default" ; 
     nombreLiens = 0;
     numNoeud = nombreNoeuds;
     nombreNoeuds++;
     liens = map < string, int>() ;
 } //----- Fin de Noeud
+
+Noeud::Noeud (string label)
+// Algorithme :
+//
+{
+#ifdef MAP
+    cout << "Appel au constructeur par defaut de <Noeud>" << endl;
+#endif
+    this->label = label ; 
+    nombreLiens = 0;
+    numNoeud = nombreNoeuds;
+    nombreNoeuds++;
+    liens = map < string, int>() ;
+} //----- Fin de Noeud
+
 
 
 Noeud::~Noeud ( )
