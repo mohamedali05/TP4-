@@ -33,7 +33,7 @@ void Graphe::AjouterLien( string Referer, string cible)
 	}
 	else // Ajout du noeud avec un accès vers lui  
 	{
-		Noeud nouveauDoc = Noeud();
+		Noeud nouveauDoc = Noeud(cible);
         nouveauDoc.AjouterLien(Referer) ; 
 		tableLiens.emplace( cible, nouveauDoc );
 		nombreNoeuds++;
@@ -66,8 +66,11 @@ const vector < Noeud > Graphe:: TopNoeudConnectes(int n) const
 	}
 	sort (tousDocs.begin() , tousDocs.end() ) ;  
 	vector < Noeud > selection = vector < Noeud> (nbRetour);
-	for (int i = 0 ; i<n ; i++){
-		selection[i] = tousDocs[i] ; 
+	vector < Noeud>::iterator it =  tousDocs.end() ;
+	it-- ;
+	for (unsigned int i = 0 ; i<nbRetour ; i++){
+		selection[i] = *it ; 
+		it-- ; 
 	}
 	return selection;
 	

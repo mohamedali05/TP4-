@@ -1,3 +1,4 @@
+
 /*************************************************************************
                            Lecture  -  description
                              -------------------
@@ -115,13 +116,19 @@ log Lecture::read (string cmd)
     Log. date. hCreneau = stoi(decalage.substr(0,2));
     Log. date. mCreneau = stoi(decalage.substr(2,2));
 
-    Log. action=partage(cmd);
-    Log. action=Log. action.substr(1);
-    Log. cible=partage(cmd);
-    Log. version=partage(cmd);
-    Log. version= Log.version.substr(0,Log.version.length()-1);
-    Log. status=stoi(partage(cmd));
-    Log. data=stoi(partage(cmd));
+    Log.action=partage(cmd);
+    Log.action=Log. action.substr(1);
+    Log.cible=partage(cmd);
+    Log.version=partage(cmd);
+    Log.version= Log.version.substr(0,Log.version.length()-1);
+    Log.status=stoi(partage(cmd));
+    string donnee=partage(cmd);
+    if (donnee.compare("-")!=0){
+        Log.data=stoi(donnee);
+    }
+    else{
+        Log.data=0;
+    }
     Log. referer=partage(cmd);
     Log. referer= Log.referer.substr(0,Log.referer.length()-1);
     Log. referer= Log.referer.substr(1);

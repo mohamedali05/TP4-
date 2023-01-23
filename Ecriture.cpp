@@ -29,8 +29,8 @@ using namespace std;
 
 void Ecriture::Ecrire_terminal( const vector < Noeud > & selection)
 {
-    for (int i = 0 ; i<selection.size() ; i++){
-        cout<<selection[i].GetLabel()<<endl ; 
+    for (size_t i = 0 ; i<selection.size() ; i++){
+        cout<<selection[i].GetLabel()<<" ( "<<selection[i].GetNombreLiens()<<" hits "<<")"<<endl ;  
     }
 }
 
