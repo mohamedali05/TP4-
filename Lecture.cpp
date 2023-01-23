@@ -116,12 +116,21 @@ log Lecture::read (string cmd)
     Log. date. hCreneau = stoi(decalage.substr(0,2));
     Log. date. mCreneau = stoi(decalage.substr(2,2));
 
+<<<<<<< HEAD
     Log.action=partage(cmd);
     Log.action=Log. action.substr(1);
     Log.cible=partage(cmd);
     Log.version=partage(cmd);
     Log.version= Log.version.substr(0,Log.version.length()-1);
     Log.status=stoi(partage(cmd));
+=======
+    Log. action=partage(cmd);
+    Log. action=Log. action.substr(1);
+    Log. cible=partage(cmd);
+    Log. version=partage(cmd);
+    Log. version= Log.version.substr(0,Log.version.length()-1);
+    Log. status=stoi(partage(cmd));
+>>>>>>> d38e10c9f2d9591c1c5245bf2d4b2cfd1feff106
     string donnee=partage(cmd);
     if (donnee.compare("-")!=0){
         Log.data=stoi(donnee);
