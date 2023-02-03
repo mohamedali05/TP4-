@@ -1,17 +1,16 @@
-
 /*************************************************************************
                            Lecture  -  description
                              -------------------
-    début                : $DATE$
+    dÃ©but                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- Réalisation de la classe <Lecture> (fichier Lecture.cpp) ------------
+//---------- RÃ©alisation de la classe <Lecture> (fichier Lecture.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include système
+//-------------------------------------------------------- Include systÃ¨me
 using namespace std;
 #include <iostream>
 #include <cstring>
@@ -22,18 +21,18 @@ using namespace std;
 #include "Lecture.h"
 
 //------------------------------------------------------------- Constantes
-
+string ref="http://intranet-if.insa-lyon.fr";
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- Méthodes publiques
-// type Lecture::Méthode ( liste des paramètres )
+//----------------------------------------------------- MÃ©thodes publiques
+// type Lecture::MÃ©thode ( liste des paramÃ¨tres )
 // Algorithme :
 //
 //{
-//} //----- Fin de Méthode
+//} //----- Fin de MÃ©thode
 
 
-//------------------------------------------------- Surcharge d'opérateurs
+//------------------------------------------------- Surcharge d'opÃ©rateurs
 /*Lecture & Lecture::operator = ( const Lecture & unLecture )
 // Algorithme :
 //
@@ -81,7 +80,7 @@ log Lecture::read (string cmd)
     Log. logname=partage(cmd);
     Log. username=partage(cmd);
 
-    //récupération de la date
+    //rÃ©cupÃ©ration de la date
     ladate=partage(cmd).substr(1);
     pos = ladate.find("/");
     Log. date .jour = stoi(ladate.substr(0,pos));
@@ -90,7 +89,7 @@ log Lecture::read (string cmd)
     pos = ladate.find("/");
     mois = ladate.substr(0,pos);
     int indiceMois;
-    for(indiceMois = 0 ; indiceMois<12 && nomMois[indiceMois]!= mois ; indiceMois++){}// boucle vide : s'arretera quand la correspondance avec le mois aura été trouvée
+    for(indiceMois = 0 ; indiceMois<12 && nomMois[indiceMois]!= mois ; indiceMois++){}// boucle vide : s'arretera quand la correspondance avec le mois aura Ã©tÃ© trouvÃ©e
     Log.date.mois = indiceMois+1;
     ladate = ladate.substr(pos+1);
 
@@ -109,28 +108,19 @@ log Lecture::read (string cmd)
     Log. date .sec = stoi(ladate);
 
 
-    //décalage de la date
+    //dÃ©calage de la date
     decalage=partage(cmd);
     Log. date. deca = (decalage[0] == '+');
     decalage=decalage.substr(1);
     Log. date. hCreneau = stoi(decalage.substr(0,2));
     Log. date. mCreneau = stoi(decalage.substr(2,2));
 
-<<<<<<< HEAD
-    Log.action=partage(cmd);
-    Log.action=Log. action.substr(1);
-    Log.cible=partage(cmd);
-    Log.version=partage(cmd);
-    Log.version= Log.version.substr(0,Log.version.length()-1);
-    Log.status=stoi(partage(cmd));
-=======
     Log. action=partage(cmd);
     Log. action=Log. action.substr(1);
     Log. cible=partage(cmd);
     Log. version=partage(cmd);
     Log. version= Log.version.substr(0,Log.version.length()-1);
     Log. status=stoi(partage(cmd));
->>>>>>> d38e10c9f2d9591c1c5245bf2d4b2cfd1feff106
     string donnee=partage(cmd);
     if (donnee.compare("-")!=0){
         Log.data=stoi(donnee);
@@ -141,6 +131,13 @@ log Lecture::read (string cmd)
     Log. referer=partage(cmd);
     Log. referer= Log.referer.substr(0,Log.referer.length()-1);
     Log. referer= Log.referer.substr(1);
+    pos=Log. referer.find("//");
+    ref=Log.referer.substr(0,pos+2);
+    Log.referer=Log.referer.substr(pos+2);
+    pos=Log.referer.find("/");
+    ref+=Log.referer.substr(0,pos);
+    Log.referer=Log.referer.substr(pos);
+
     Log. IDnav=cmd.substr(1);
     Log. IDnav=Log.IDnav.substr(0,Log.IDnav.length()-1);
     return Log;
@@ -148,7 +145,7 @@ log Lecture::read (string cmd)
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- Méthodes protégées
+//----------------------------------------------------- MÃ©thodes protÃ©gÃ©es
 
 string Lecture::partage(string & ligne)
 {

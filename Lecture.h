@@ -1,10 +1,4 @@
-/*************************************************************************
-                           Lecture  -  description
-                             -------------------
-    début                : $DATE$
-    copyright            : (C) $YEAR$ par $AUTHOR$
-    e-mail               : $EMAIL$
-*************************************************************************/
+
 
 //---------- Interface de la classe <Lecture> (fichier Lecture.h) ----------------
 #if ! defined ( Lecture_H )
