@@ -1,16 +1,16 @@
 /*************************************************************************
                            Lecture  -  description
                              -------------------
-    dÃ©but                : $DATE$
+    début                : $DATE$
     copyright            : (C) $YEAR$ par $AUTHOR$
     e-mail               : $EMAIL$
 *************************************************************************/
 
-//---------- RÃ©alisation de la classe <Lecture> (fichier Lecture.cpp) ------------
+//---------- Réalisation de la classe <Lecture> (fichier Lecture.cpp) ------------
 
 //---------------------------------------------------------------- INCLUDE
 
-//-------------------------------------------------------- Include systÃ¨me
+//-------------------------------------------------------- Include système
 using namespace std;
 #include <iostream>
 #include <cstring>
@@ -24,15 +24,15 @@ using namespace std;
 string ref="http://intranet-if.insa-lyon.fr";
 //----------------------------------------------------------------- PUBLIC
 
-//----------------------------------------------------- MÃ©thodes publiques
-// type Lecture::MÃ©thode ( liste des paramÃ¨tres )
+//----------------------------------------------------- Méthodes publiques
+// type Lecture::Méthode ( liste des paramètres )
 // Algorithme :
 //
 //{
-//} //----- Fin de MÃ©thode
+//} //----- Fin de Méthode
 
 
-//------------------------------------------------- Surcharge d'opÃ©rateurs
+//------------------------------------------------- Surcharge d'opérateurs
 /*Lecture & Lecture::operator = ( const Lecture & unLecture )
 // Algorithme :
 //
@@ -80,7 +80,7 @@ log Lecture::read (string cmd)
     Log. logname=partage(cmd);
     Log. username=partage(cmd);
 
-    //rÃ©cupÃ©ration de la date
+    //récupération de la date
     ladate=partage(cmd).substr(1);
     pos = ladate.find("/");
     Log. date .jour = stoi(ladate.substr(0,pos));
@@ -89,7 +89,7 @@ log Lecture::read (string cmd)
     pos = ladate.find("/");
     mois = ladate.substr(0,pos);
     int indiceMois;
-    for(indiceMois = 0 ; indiceMois<12 && nomMois[indiceMois]!= mois ; indiceMois++){}// boucle vide : s'arretera quand la correspondance avec le mois aura Ã©tÃ© trouvÃ©e
+    for(indiceMois = 0 ; indiceMois<12 && nomMois[indiceMois]!= mois ; indiceMois++){}// boucle vide : s'arretera quand la correspondance avec le mois aura été trouvée
     Log.date.mois = indiceMois+1;
     ladate = ladate.substr(pos+1);
 
@@ -108,7 +108,7 @@ log Lecture::read (string cmd)
     Log. date .sec = stoi(ladate);
 
 
-    //dÃ©calage de la date
+    //décalage de la date
     decalage=partage(cmd);
     Log. date. deca = (decalage[0] == '+');
     decalage=decalage.substr(1);
@@ -128,15 +128,29 @@ log Lecture::read (string cmd)
     else{
         Log.data=0;
     }
+
     Log. referer=partage(cmd);
     Log. referer= Log.referer.substr(0,Log.referer.length()-1);
     Log. referer= Log.referer.substr(1);
-    pos=Log. referer.find("//");
-    ref=Log.referer.substr(0,pos+2);
-    Log.referer=Log.referer.substr(pos+2);
-    pos=Log.referer.find("/");
-    ref+=Log.referer.substr(0,pos);
-    Log.referer=Log.referer.substr(pos);
+
+    if (Log.referer.compare("-")!=0){
+        string refe;
+        pos=Log. referer.find("//");
+        refe=Log.referer.substr(0,pos+2);
+        Log.referer=Log.referer.substr(pos+2);
+        pos=Log.referer.find("/");
+        refe+=Log.referer.substr(0,pos);
+        if(refe.substr(0,ref.size()) == ref){//enlever la racine si elle est locale 
+            Log.referer=Log.referer.substr(pos);
+        }
+        else{
+            ref=refe;
+        }
+        
+    }
+    else{
+        Log.referer=ref;
+    }
 
     Log. IDnav=cmd.substr(1);
     Log. IDnav=Log.IDnav.substr(0,Log.IDnav.length()-1);
@@ -145,7 +159,7 @@ log Lecture::read (string cmd)
 
 //------------------------------------------------------------------ PRIVE
 
-//----------------------------------------------------- MÃ©thodes protÃ©gÃ©es
+//----------------------------------------------------- Méthodes protégées
 
 string Lecture::partage(string & ligne)
 {
