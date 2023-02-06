@@ -1,0 +1,1 @@
+Ce test permet de vérifier la génération d'une erreur lorsqu'on appelle l'option -t avec une heure qui n'est pas comprise entre 0 et 23.
