@@ -13,7 +13,7 @@
 typedef struct{
     unsigned int sec;
     unsigned int min;
-    unsigned int heure;
+    int heure;
     unsigned int jour;
     unsigned int mois;
     unsigned int annee;

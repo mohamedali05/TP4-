@@ -44,6 +44,10 @@
     
 
     bool stringEstChiffre( string );
+
+    bool Filtre (log Doc , bool FiltreHeure , int heure , bool EnleveExtension) ; 
+
+    bool contains (string s1 , string s2) ; 
 //----------------------------------------------------- Attributs protégés
 
 //-------------------------------- Autres définitions dépendantes de <Analog>

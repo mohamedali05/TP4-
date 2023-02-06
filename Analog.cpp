@@ -30,12 +30,13 @@ int main( int argc, char ** argv)
     bool  EnleveExtension = false ;  
     bool FiltreHeure = false ; 
     bool ArgValides = true;
+    bool ajout = true ; 
 
     string ArgCourant ;  
     string nom_fichier_graphe ; 
     string nom_log ; 
 
-    int heure = -1 ; 
+int heure = -1 ; 
 
     if (argc == 1){
         cerr<<"Le nom du fichier log n'a pas été spécifié"<<endl  ;
@@ -108,28 +109,21 @@ int main( int argc, char ** argv)
     string ligne = "a" ; 
     Graphe graphe ; 
 
-    /*if(ArgValides){
-        fichier.open( nom_log , ios::in );
-        
-        while(ligne != "" ){
-            getline(fichier, ligne)  ;
-            cout<<ligne<<endl ; 
-            Lecture a  ; 
-            log Doc  = a.read(ligne) ; 
-            graphe.AjouterLien(Doc.cible , Doc.referer) ; 
-        }
-    }*/
     if (fichier){
         cout<<"fichier valide"<<endl ; 
         getline(fichier, ligne)  ;
-        while(ligne != "" ){
+        while(fichier){
                 Lecture a  ; 
                 log Doc  = a.read(ligne) ;
-                cout<<ligne<<endl ; 
-                graphe.AjouterLien(Doc.referer , Doc.cible) ; 
+                cout<<Doc.cible<<endl ;
+                cout<<contains(Doc.cible, ".jpg")<<endl ;
+                ajout = Filtre(Doc , FiltreHeure ,heure ,EnleveExtension) ; 
+                if (ajout){
+                    graphe.AjouterLien(Doc.referer , Doc.cible) ; 
+                }
+                //graphe.AjouterLien(Doc.referer , Doc.cible) ; 
                 getline(fichier, ligne) ;
         }
-
         const vector < Noeud > vecteur = graphe.TopNoeudConnectes(9) ; 
         Ecriture E ; 
         E.Ecrire_terminal(vecteur) ; 
@@ -160,3 +154,22 @@ bool stringEstChiffre( string chaine )
   }
 	return true;
 }
+
+bool Filtre (log Doc , bool FiltreHeure , int heure , bool EnleveExtension){
+    if (FiltreHeure && Doc.date.heure == heure){
+        return false ; 
+    }
+    if (EnleveExtension && (contains(Doc.cible, ".jpg") || contains(Doc.cible, ".png") || contains(Doc.cible, ".jpeg")
+    || contains(Doc.cible, ".gif") || contains(Doc.cible, ".css") || contains(Doc.cible, ".js"))){
+        return false ;
+    }
+    return true ; 
+}
+
+bool contains (string s1 , string s2){
+    if (s1.find(s2) != std::string::npos) {
+        return true ;
+    }
+    return false ;
+}
+
